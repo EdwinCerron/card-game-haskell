@@ -1,0 +1,63 @@
+cabal-version:      3.4
+name:               cards-haskell
+version:            0.1.0.0
+synopsis:           Card Games in Haskell
+-- description:
+homepage:           https://libraries.u-w-u.com
+license:            GPL-3.0-or-later
+license-file:       LICENSE
+author:             Edwin Manuel Cerrón Angeles
+maintainer:         xerron.angels@gmail.com
+-- copyright:
+category:           Game
+build-type:         Simple
+extra-doc-files:    CHANGELOG.md
+-- extra-source-files:
+
+common warnings
+    ghc-options: -Wall
+
+library
+    import:           warnings
+    exposed-modules:  
+                     Game.Card.Types,
+                     Game.Card.Deck,
+                     Game.Card.Standard,
+                     Game.Card.Spanish,
+                     Game.Card.German,
+                     Game.Blackjack
+    -- other-modules:
+    -- other-extensions:
+    build-depends:    
+        base ^>=4.20.0.0,
+        random == 1.2.1.3,
+        MonadRandom >= 0.6.1,
+        containers ^>= 0.7
+    hs-source-dirs:   src
+    default-language: GHC2024
+
+executable cards-haskell
+    import:           warnings
+    main-is:          Main.hs
+    -- other-modules:
+    -- other-extensions:
+    build-depends:
+        base ^>=4.20.0.0,
+        cards-haskell,
+        random == 1.2.1.3,
+        MonadRandom >= 0.6.1,
+
+    hs-source-dirs:   app
+    default-language: GHC2024
+
+test-suite cards-haskell-test
+    import:           warnings
+    default-language: GHC2024
+    -- other-modules:
+    -- other-extensions:
+    type:             exitcode-stdio-1.0
+    hs-source-dirs:   test
+    main-is:          Main.hs
+    build-depends:
+        base ^>=4.20.0.0,
+        cards-haskell
